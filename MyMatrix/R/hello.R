@@ -19,7 +19,7 @@
 #' @return Multiply M1, M2
 #' @examples M1=matrix(c(1,2,3,9),ncol=2)
 #' M2=matrix(c(9,2,3,9),ncol=2)
-#' multi_matrix((M1,M2)
+#' multi_matrix(M1,M2)
 multi_matrix=function(M1,M2){
   ncol.M1=ncol(M1)
   ncol.M2=ncol(M2)
@@ -48,7 +48,7 @@ multi_matrix=function(M1,M2){
 #' @examples M1=matrix(c(1,2,3,9),ncol=2)
 #' M2=matrix(c(9,2,3,9),ncol=2)
 #' V=c(1,2)
-#' multi_MMV((M1,M2,V,arg=1)
+#' multi_MMV(M1,M2,V,arg=1)
 multi_MMV=function(M1,M2,V,arg=1){
   V=matrix(V)
   if(arg==1){
