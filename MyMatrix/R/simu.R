@@ -46,3 +46,31 @@ chol=function(sigma){
  }
  return(L)
 }
+
+QR.decom=function(X){
+  X.ncol=ncol(X)
+  X.nrow=nrow(X)
+  U=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)
+  V=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)
+  U[1,]=X[1,]/sqrt(sum(X[1,]^2))
+  V[1,]=X[1,]
+  for (i in 2:X.nrow){
+    u=matrix(rep(0,X.ncol),ncol=X.ncol)
+    for (j in 1:(i-1)){
+      u=u+U[j,]%*%matrix(X[i,])%*%U[j,]
+    }
+    V[i,]=X[i,]-u
+    U[i,]=V[i,]/sqrt(sum(V[i,]^2))
+  }
+  R=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)
+  for (i in 1:X.nrow){
+    for (j in 1:X.ncol){
+      R[i,j]=t(U[i,])%*%X[j,]
+    }
+  }
+  return(list(U,V,R))
+}
+
+SVD.decom=function(){
+
+}
