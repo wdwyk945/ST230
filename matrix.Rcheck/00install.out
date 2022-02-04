@@ -3,11 +3,12 @@
 ** R
 ** byte-compile and prepare package for lazy loading
 ** help
+No man pages found in package  ‘matrix’ 
 *** installing help indices
 ** building package indices
 ** testing if installed package can be loaded from temporary location
 Warning in file.symlink(from, to) :
-  无法打开'/Users/chaosnow/Desktop/ST230/ST230/matrix.Rcheck/00_pkg_src/matrix'到'/var/folders/nb/76gbrj6s1g75w3g049dr3glh0000gn/T//RtmpqGHkQd/working_dir/RtmpZygKHZ/RLIBS_1dac3d7e3e8/matrix'的链结，原因是'File exists'
+  无法打开'/Users/chaosnow/Desktop/ST230/ST230/matrix.Rcheck/00_pkg_src/matrix'到'/var/folders/nb/76gbrj6s1g75w3g049dr3glh0000gn/T//RtmpB0oFGU/working_dir/Rtmpskd65A/RLIBS_3c307ca06606/matrix'的链结，原因是'File exists'
 Error in flink(normalizePath(pkgdir), tmplib) : 
   无法打开/Users/chaosnow/Desktop/ST230/ST230/matrix.Rcheck/00_pkg_src/matrix联结
 * removing ‘/Users/chaosnow/Desktop/ST230/ST230/matrix.Rcheck/matrix’

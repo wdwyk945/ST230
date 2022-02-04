@@ -1,0 +1,21 @@
+---
+title: "HW2"
+author: "Yukang Wang"
+date: "2/4/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(matrix)
+Y=rnorm(100,10,1)
+X=matrix(rnorm(10000,10,1),ncol=100)
+(lb <- bench::mark(
+  QR_OLS(Y,X),
+  SVD_OLS(Y,X)
+))
+```
+
