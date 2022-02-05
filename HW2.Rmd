@@ -2,20 +2,244 @@
 title: "HW2"
 author: "Yukang Wang"
 date: "2/4/2022"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# 1
+
+$$
+A=\pmatrix{2&-2\\-2&5}\\
+=\pmatrix{l_{11}&0\\l&L_{22}}\pmatrix{l_{11}&l\\0&L_{22}}\\
+l_{11}^2={2}\\
+l\times l_{11}={-2}\\
+l^2+L_{22}^2=5\\
+l_{11}=\sqrt{2}\\
+l=-\sqrt{2}\\
+L_{22}=\sqrt{3}\\
+B=\pmatrix{\sqrt{2}&0\\-\sqrt{2}&\sqrt{3}}\\
+A=BB^T
+$$
+
+
+
+# 2
+
+$$
+b_{11}=\sqrt{a_{11}}\\
+b_{1i}=0\\
+b_{i1}=a_{i1}/b_{11}\\
+L_{22}L_{22}^T=A_{(2,2)...(n,n)}-ll^T\\
+ll^T=\pmatrix{a_{12}^2&...&a_{12}a_{n1}\\...&...&...\\a_{n1}a_{12}&...&a_{1n}^2}
+$$
+
+If $a_{11}=0$, then $b_{11}=0$, if $a_{i1}=0$, then $b_{i1}=0$, we always have $b_{1i}=0$. Since for $i>2,|i-2|>|i-1|$ if $a_{2i}=0$, then $a_{i1}=0$, so the value of $ll^T$ would not make a 0 value element to be not 0 in $A_{(2,2)...(n,n)}-ll^T$. Then we can keep on the Cholesky decomposition on $L_{22}L_{22}^T=A_{(2,2)...(n,n)}-ll^T$. According to the analysis of  $b_{i1}$ And $b_{1i}$, we can conclude that for all b we have if $a_{ij}=0$ Then $b_{ij}=0$.
+
+# 3
+
+$$
+X(X^T X)^{-1}X^T = QR((QR)^TQR)^{-1}(QR)^T\\
+=QR(R^TQ^TQR)^{-1}R^TQ^T\\
+=QR(R^TR)^{-1}R^TQ^T\\
+=QRR^{-1}R^{-T}R^TQ^T\\
+=QQ^T\\
+det(X^TX)=det(R^TQ^TQR)=det(R^TR)=det(R)^2
+$$
+
+
+
+When X is a square matrix.
+$$
+det(X^TX)=det(X)^2\\
+=|det(X)|^2\\
+=det(R)^2\\
+=|det(R)|^2\\
+|det(X)|=|det(R)|
+$$
+
+
+# 4
+
+$$
+A=\pmatrix{cos(\theta)&sin(\theta)\\sin(\theta)&-cos(\theta)}\\
+AA^T=\pmatrix{cos(\theta)&sin(\theta)\\sin(\theta)&-cos(\theta)}\pmatrix{cos(\theta)&sin(\theta)\\sin(\theta)&-cos(\theta)}\\
+=\pmatrix{cos(\theta)cos(\theta)+sin(\theta)sin(\theta)&cos(\theta)sin(\theta)-cos(\theta)sin(\theta)\\-cos(\theta)sin(\theta)+cos(\theta)sin(\theta)&cos(\theta)cos(\theta)+sin(\theta)sin(\theta)}\\
+=\pmatrix{1&0\\0&1}\\
+
+|A-\lambda|=(cos(\theta)-\lambda)(-cos(\theta)-\lambda)-sin(\theta)^2\\
+=\lambda^2-cos(\theta)^2-sin(\theta^2)\\
+=\lambda^2-1\\
+=0\\
+\lambda=1or-1\\
+(A-\lambda I)\pmatrix{a\\b}=0\\
+\pmatrix{a\\b}=\pmatrix{1-cos(\theta)\\sin(\theta)},\lambda=-1\\
+\pmatrix{a\\b}=\pmatrix{-1-cos(\theta)\\sin(\theta)},\lambda=1\\
+$$
+
+# 5
+
+$$
+Ov=\lambda v\\
+v^TOO^Tv=v^Tv\\
+=\lambda^2v^Tv\\
+v\in R^p\\
+\lambda_i^2=1\\
+\lambda_i=\pm1
+$$
+
+# 6
+
+$$
+cond_2(A) = ||A||_2||A^{−1}||_2\\
+A=U\Sigma V^T\\
+A^{-1}=V\Sigma^{-1} U^T\\
+||A||_2=\sqrt{P(U\Sigma T^TT\Sigma^T U^T)}=\sqrt{P(U\Sigma^2 U^T)}=max_i \sigma_i\\
+||A^{-1}||_2=\sqrt{P(V\Sigma ^{-2} V^T)}=max_i \frac{1}{\sigma_i}= \frac{1}{min_i\sigma_i}\\
+cond_2(A)=\frac{max_i \sigma_i}{min_i\sigma_i}
+$$
+
+
+# 7
+```{r}
+#' generate MVN samples
+#' @param mu a n dimensional numeric vector
+#' @param sigma a n*n positive definite matrix
+#' @param N a numeric value
+#' @return Sample data from MVN(mu,sigma) for N times
+#' @examples sigma=matrix(c(1,.5,.5,.5,.5,1,5,.5,.5,.5,1,.5,.5,.5,.5,1),ncol=4)
+#' data=simu(c(1,2,3,4), sigma,100)
+#' summary(data)
+#' cov(data)
+simu=function(mu, sigma,N){
+  data=data.frame(matrix(rep(0,N*length(mu)),nrow=N))
+
+  for(i in 1:N){
+    Z=rnorm(length(mu),0,1)
+    X=mu+Z%*%chol(sigma)
+    data[i,]=X
+  }
+  return(data)
+}
+
+#' Cholesky decomposition
+#' @param sigma a n*n positive definite matrix
+#' @return Cholesky decomposition of sigma
+#' @examples sigma=matrix(c(1,.5,.5,.5,.5,1,5,.5,.5,.5,1,.5,.5,.5,.5,1),ncol=4)
+#' chol(sigma)
+chol=function(sigma){
+  ncol.sigma=ncol(sigma)
+  nrow.sigma=nrow(sigma)
+  L=matrix(rep(0,
+               ncol.sigma*nrow.sigma),
+           ncol=ncol.sigma)
+  l11=sqrt(sigma[1,1])
+  l=sigma[1,2:ncol.sigma]/l11
+  M=sigma[2:nrow.sigma,2:ncol.sigma]-l%*%t(l)
+  L[1,1]=l11
+  L[1,2:ncol.sigma]=l
+  L[2:nrow.sigma,1]=0
+  if(nrow.sigma==2){
+    L[2,2]=sqrt(M)
+  }
+  else{
+    L[2:nrow.sigma,2:ncol.sigma]=chol(M)
+  }
+  return(L)
+}
+sigma=matrix(c(1,.5,.5,.5,.5,1,5,.5,.5,.5,1,.5,.5,.5,.5,1),ncol=4)
+mu=c(1,2,3,4)
+data=simu(mu, sigma,100)
+print('mu is')
+print(mu)
+print('mean is')
+print(apply(data,2,mean))
+print('sigma is')
+print(sigma)
+print('sample covariance is')
+print(cov(data))
+```
+
+
+# 8
+```{r}
+data=read.csv('./homework2_regression.csv')
+Y=data$y
+X=data[2:6]
+#QR.decom=function(X){
+#  X.ncol=ncol(X)
+#  X.nrow=nrow(X)
+#  U=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)
+#  V=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)
+#  U[1,]=X[1,]/sqrt(sum(X[1,]^2))
+#  V[1,]=X[1,]
+#  for (i in 2:X.nrow){
+#    u=matrix(rep(0,X.ncol),ncol=X.ncol)
+#  for (j in 1:(i-1)){
+#    u=u+U[j,]%*%matrix(X[i,])%*%U[j,]
+#  }
+#  V[i,]=X[i,]-u
+#  U[i,]=V[i,]/sqrt(sum(V[i,]^2))
+#}
+#R=matrix(rep(0,X.nrow*X.nrow),ncol=X.nrow)
+#for (i in 1:X.nrow){
+#  for (j in 1:X.ncol){
+#    R[i,j]=U[i,]%*%X[j,]
+#  }
+#}
+#R=U%*%t(X)
+#return(list(U,V,R))
+#t(result[[1]])%*%result[[3]]
+#}
+
+
+#' OLS by QR decomposition
+#' @param Y a vector with n entry
+#' @param X a n * p matrix
+#' @return estimated parameters for OLS regression by QR decomposition
+#' @examples Y=rnorm(100,10,1)
+#' X=matrix(rnorm(10000,10,1),ncol=100)
+#' QR_OLS(Y,X)
+QR_OLS=function(Y,X){
+  #result=QR.decom(X)
+  result=qr(X)
+  Q=qr.Q(result)
+  R=qr.R(result)
+  beta=solve(R)%*%t(Q)%*%Y
+  return(matrix(beta))
+}
+
+#' OLS by SVD decomposition
+#' @param Y a vector with n entry
+#' @param X a n * p matrix
+#' @return estimated parameters for OLS regression by SVD decomposition
+#' @examples Y=rnorm(100,10,1)
+#' X=matrix(rnorm(10000,10,1),ncol=100)
+#' SVD_OLS(Y,X)
+SVD_OLS=function(Y,X){
+  result=svd(X)
+
+  u=result$u
+  sigma.inv=solve(diag(result$d))
+  v=s=result$v
+  beta=v%*%sigma.inv%*%t(u)%*%Y
+  return(beta)
+}
+
+```
+
+
 
 ```{r}
-library(matrix)
-Y=rnorm(100,10,1)
-X=matrix(rnorm(10000,10,1),ncol=100)
+
 (lb <- bench::mark(
   QR_OLS(Y,X),
   SVD_OLS(Y,X)
 ))
 ```
 
+We can see that the SVD method is faster than the QR method.

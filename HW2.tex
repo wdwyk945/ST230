@@ -1,0 +1,440 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={HW2},
+  pdfauthor={Yukang Wang},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{HW2}
+\author{Yukang Wang}
+\date{2/4/2022}
+
+\begin{document}
+\maketitle
+
+\hypertarget{section}{%
+\section{1}\label{section}}
+
+\[
+A=\pmatrix{2&-2\\-2&5}\\
+=\pmatrix{l_{11}&0\\l&L_{22}}\pmatrix{l_{11}&l\\0&L_{22}}\\
+l_{11}^2={2}\\
+l\times l_{11}={-2}\\
+l^2+L_{22}^2=5\\
+l_{11}=\sqrt{2}\\
+l=-\sqrt{2}\\
+L_{22}=\sqrt{3}\\
+B=\pmatrix{\sqrt{2}&0\\-\sqrt{2}&\sqrt{3}}\\
+A=BB^T
+\]
+
+\hypertarget{section-1}{%
+\section{2}\label{section-1}}
+
+\[
+b_{11}=\sqrt{a_{11}}\\
+b_{1i}=0\\
+b_{i1}=a_{i1}/b_{11}\\
+L_{22}L_{22}^T=A_{(2,2)...(n,n)}-ll^T\\
+ll^T=\pmatrix{a_{12}^2&...&a_{12}a_{n1}\\...&...&...\\a_{n1}a_{12}&...&a_{1n}^2}
+\]
+
+If \(a_{11}=0\), then \(b_{11}=0\), if \(a_{i1}=0\), then \(b_{i1}=0\),
+we always have \(b_{1i}=0\). Since for \(i>2,|i-2|>|i-1|\) if
+\(a_{2i}=0\), then \(a_{i1}=0\), so the value of \(ll^T\) would not make
+a 0 value element to be not 0 in \(A_{(2,2)...(n,n)}-ll^T\). Then we can
+keep on the Cholesky decomposition on
+\(L_{22}L_{22}^T=A_{(2,2)...(n,n)}-ll^T\). According to the analysis of
+\(b_{i1}\) And \(b_{1i}\), we can conclude that for all b we have if
+\(a_{ij}=0\) Then \(b_{ij}=0\).
+
+\hypertarget{section-2}{%
+\section{3}\label{section-2}}
+
+\[
+X(X^T X)^{-1}X^T = QR((QR)^TQR)^{-1}(QR)^T\\
+=QR(R^TQ^TQR)^{-1}R^TQ^T\\
+=QR(R^TR)^{-1}R^TQ^T\\
+=QRR^{-1}R^{-T}R^TQ^T\\
+=QQ^T\\
+det(X^TX)=det(R^TQ^TQR)=det(R^TR)=det(R)^2
+\]
+
+When X is a square matrix. \[
+det(X^TX)=det(X)^2\\
+=|det(X)|^2\\
+=det(R)^2\\
+=|det(R)|^2\\
+|det(X)|=|det(R)|
+\]
+
+\hypertarget{section-3}{%
+\section{4}\label{section-3}}
+
+\$\$
+A=\pmatrix{cos(\theta)&sin(\theta)\\sin(\theta)&-cos(\theta)}\textbackslash{}
+AA\^{}T=\pmatrix{cos(\theta)&sin(\theta)\\sin(\theta)&-cos(\theta)}\pmatrix{cos(\theta)&sin(\theta)\\sin(\theta)&-cos(\theta)}\textbackslash{}
+=\pmatrix{cos(\theta)cos(\theta)+sin(\theta)sin(\theta)&cos(\theta)sin(\theta)-cos(\theta)sin(\theta)\\-cos(\theta)sin(\theta)+cos(\theta)sin(\theta)&cos(\theta)cos(\theta)+sin(\theta)sin(\theta)}\textbackslash{}
+=\pmatrix{1&0\\0&1}\textbackslash{}
+
+\textbar A-\lambda\textbar=(cos(\theta)-\lambda)(-cos(\theta)-\lambda)-sin(\theta)\^{}2\textbackslash{}
+=\lambda\textsuperscript{2-cos(\theta)}2-sin(\theta\^{}2)\textbackslash{}
+=\lambda\^{}2-1\textbackslash{} =0\textbackslash{}
+\lambda=1or-1\textbackslash{}
+(A-\lambda I)\pmatrix{a\\b}=0\textbackslash{}
+\pmatrix{a\\b}=\pmatrix{1-cos(\theta)\\sin(\theta)},\lambda=-1\textbackslash{}
+\pmatrix{a\\b}=\pmatrix{-1-cos(\theta)\\sin(\theta)},\lambda=1\textbackslash{}
+\$\$
+
+\hypertarget{section-4}{%
+\section{5}\label{section-4}}
+
+\[
+Ov=\lambda v\\
+v^TOO^Tv=v^Tv\\
+=\lambda^2v^Tv\\
+v\in R^p\\
+\lambda_i^2=1\\
+\lambda_i=\pm1
+\]
+
+\hypertarget{section-5}{%
+\section{6}\label{section-5}}
+
+\[
+cond_2(A) = ||A||_2||A^{−1}||_2\\
+A=U\Sigma V^T\\
+A^{-1}=V\Sigma^{-1} U^T\\
+||A||_2=\sqrt{P(U\Sigma T^TT\Sigma^T U^T)}=\sqrt{P(U\Sigma^2 U^T)}=max_i \sigma_i\\
+||A^{-1}||_2=\sqrt{P(V\Sigma ^{-2} V^T)}=max_i \frac{1}{\sigma_i}= \frac{1}{min_i\sigma_i}\\
+cond_2(A)=\frac{max_i \sigma_i}{min_i\sigma_i}
+\]
+
+\hypertarget{section-6}{%
+\section{7}\label{section-6}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#\textquotesingle{} generate MVN samples}
+\CommentTok{\#\textquotesingle{} @param mu a n dimensional numeric vector}
+\CommentTok{\#\textquotesingle{} @param sigma a n*n positive definite matrix}
+\CommentTok{\#\textquotesingle{} @param N a numeric value}
+\CommentTok{\#\textquotesingle{} @return Sample data from MVN(mu,sigma) for N times}
+\CommentTok{\#\textquotesingle{} @examples sigma=matrix(c(1,.5,.5,.5,.5,1,5,.5,.5,.5,1,.5,.5,.5,.5,1),ncol=4)}
+\CommentTok{\#\textquotesingle{} data=simu(c(1,2,3,4), sigma,100)}
+\CommentTok{\#\textquotesingle{} summary(data)}
+\CommentTok{\#\textquotesingle{} cov(data)}
+\NormalTok{simu}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(mu, sigma,N)\{}
+\NormalTok{  data}\OtherTok{=}\FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,N}\SpecialCharTok{*}\FunctionTok{length}\NormalTok{(mu)),}\AttributeTok{nrow=}\NormalTok{N))}
+
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N)\{}
+\NormalTok{    Z}\OtherTok{=}\FunctionTok{rnorm}\NormalTok{(}\FunctionTok{length}\NormalTok{(mu),}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{    X}\OtherTok{=}\NormalTok{mu}\SpecialCharTok{+}\NormalTok{Z}\SpecialCharTok{\%*\%}\FunctionTok{chol}\NormalTok{(sigma)}
+\NormalTok{    data[i,]}\OtherTok{=}\NormalTok{X}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(data)}
+\NormalTok{\}}
+
+\CommentTok{\#\textquotesingle{} Cholesky decomposition}
+\CommentTok{\#\textquotesingle{} @param sigma a n*n positive definite matrix}
+\CommentTok{\#\textquotesingle{} @return Cholesky decomposition of sigma}
+\CommentTok{\#\textquotesingle{} @examples sigma=matrix(c(1,.5,.5,.5,.5,1,5,.5,.5,.5,1,.5,.5,.5,.5,1),ncol=4)}
+\CommentTok{\#\textquotesingle{} chol(sigma)}
+\NormalTok{chol}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(sigma)\{}
+\NormalTok{  ncol.sigma}\OtherTok{=}\FunctionTok{ncol}\NormalTok{(sigma)}
+\NormalTok{  nrow.sigma}\OtherTok{=}\FunctionTok{nrow}\NormalTok{(sigma)}
+\NormalTok{  L}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}
+\NormalTok{               ncol.sigma}\SpecialCharTok{*}\NormalTok{nrow.sigma),}
+           \AttributeTok{ncol=}\NormalTok{ncol.sigma)}
+\NormalTok{  l11}\OtherTok{=}\FunctionTok{sqrt}\NormalTok{(sigma[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{])}
+\NormalTok{  l}\OtherTok{=}\NormalTok{sigma[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\SpecialCharTok{:}\NormalTok{ncol.sigma]}\SpecialCharTok{/}\NormalTok{l11}
+\NormalTok{  M}\OtherTok{=}\NormalTok{sigma[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{nrow.sigma,}\DecValTok{2}\SpecialCharTok{:}\NormalTok{ncol.sigma]}\SpecialCharTok{{-}}\NormalTok{l}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(l)}
+\NormalTok{  L[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}\OtherTok{=}\NormalTok{l11}
+\NormalTok{  L[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\SpecialCharTok{:}\NormalTok{ncol.sigma]}\OtherTok{=}\NormalTok{l}
+\NormalTok{  L[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{nrow.sigma,}\DecValTok{1}\NormalTok{]}\OtherTok{=}\DecValTok{0}
+  \ControlFlowTok{if}\NormalTok{(nrow.sigma}\SpecialCharTok{==}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{    L[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}\OtherTok{=}\FunctionTok{sqrt}\NormalTok{(M)}
+\NormalTok{  \}}
+  \ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{    L[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{nrow.sigma,}\DecValTok{2}\SpecialCharTok{:}\NormalTok{ncol.sigma]}\OtherTok{=}\FunctionTok{chol}\NormalTok{(M)}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(L)}
+\NormalTok{\}}
+\NormalTok{sigma}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{ncol=}\DecValTok{4}\NormalTok{)}
+\NormalTok{mu}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{data}\OtherTok{=}\FunctionTok{simu}\NormalTok{(mu, sigma,}\DecValTok{100}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\StringTok{\textquotesingle{}mu is\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mu is"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{\textquotesingle{}mean is\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mean is"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{apply}\NormalTok{(data,}\DecValTok{2}\NormalTok{,mean))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        X1        X2        X3        X4 
+## 0.8849892 2.0083428 3.0009015 4.0869376
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{\textquotesingle{}sigma is\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "sigma is"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(sigma)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]  1.0  0.5  0.5  0.5
+## [2,]  0.5  1.0  0.5  0.5
+## [3,]  0.5  5.0  1.0  0.5
+## [4,]  0.5  0.5  0.5  1.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{\textquotesingle{}sample covariance is\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "sample covariance is"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{cov}\NormalTok{(data))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           X1        X2        X3        X4
+## X1 1.2477069 0.6068424 0.6685164 0.7355341
+## X2 0.6068424 1.1156439 0.5958970 0.5699154
+## X3 0.6685164 0.5958970 1.1594358 0.7064093
+## X4 0.7355341 0.5699154 0.7064093 1.1770224
+\end{verbatim}
+
+\hypertarget{section-7}{%
+\section{8}\label{section-7}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OtherTok{=}\FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}./homework2\_regression.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{Y}\OtherTok{=}\NormalTok{data}\SpecialCharTok{$}\NormalTok{y}
+\NormalTok{X}\OtherTok{=}\NormalTok{data[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{6}\NormalTok{]}
+\CommentTok{\#QR.decom=function(X)\{}
+\CommentTok{\#  X.ncol=ncol(X)}
+\CommentTok{\#  X.nrow=nrow(X)}
+\CommentTok{\#  U=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)}
+\CommentTok{\#  V=matrix(rep(0,X.ncol*X.nrow),ncol=X.ncol)}
+\CommentTok{\#  U[1,]=X[1,]/sqrt(sum(X[1,]\^{}2))}
+\CommentTok{\#  V[1,]=X[1,]}
+\CommentTok{\#  for (i in 2:X.nrow)\{}
+\CommentTok{\#    u=matrix(rep(0,X.ncol),ncol=X.ncol)}
+\CommentTok{\#  for (j in 1:(i{-}1))\{}
+\CommentTok{\#    u=u+U[j,]\%*\%matrix(X[i,])\%*\%U[j,]}
+\CommentTok{\#  \}}
+\CommentTok{\#  V[i,]=X[i,]{-}u}
+\CommentTok{\#  U[i,]=V[i,]/sqrt(sum(V[i,]\^{}2))}
+\CommentTok{\#\}}
+\CommentTok{\#R=matrix(rep(0,X.nrow*X.nrow),ncol=X.nrow)}
+\CommentTok{\#for (i in 1:X.nrow)\{}
+\CommentTok{\#  for (j in 1:X.ncol)\{}
+\CommentTok{\#    R[i,j]=U[i,]\%*\%X[j,]}
+\CommentTok{\#  \}}
+\CommentTok{\#\}}
+\CommentTok{\#R=U\%*\%t(X)}
+\CommentTok{\#return(list(U,V,R))}
+\CommentTok{\#t(result[[1]])\%*\%result[[3]]}
+\CommentTok{\#\}}
+
+
+\CommentTok{\#\textquotesingle{} OLS by QR decomposition}
+\CommentTok{\#\textquotesingle{} @param Y a vector with n entry}
+\CommentTok{\#\textquotesingle{} @param X a n * p matrix}
+\CommentTok{\#\textquotesingle{} @return estimated parameters for OLS regression by QR decomposition}
+\CommentTok{\#\textquotesingle{} @examples Y=rnorm(100,10,1)}
+\CommentTok{\#\textquotesingle{} X=matrix(rnorm(10000,10,1),ncol=100)}
+\CommentTok{\#\textquotesingle{} QR\_OLS(Y,X)}
+\NormalTok{QR\_OLS}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(Y,X)\{}
+  \CommentTok{\#result=QR.decom(X)}
+\NormalTok{  result}\OtherTok{=}\FunctionTok{qr}\NormalTok{(X)}
+\NormalTok{  Q}\OtherTok{=}\FunctionTok{qr.Q}\NormalTok{(result)}
+\NormalTok{  R}\OtherTok{=}\FunctionTok{qr.R}\NormalTok{(result)}
+\NormalTok{  beta}\OtherTok{=}\FunctionTok{solve}\NormalTok{(R)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(Q)}\SpecialCharTok{\%*\%}\NormalTok{Y}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(beta))}
+\NormalTok{\}}
+
+\CommentTok{\#\textquotesingle{} OLS by SVD decomposition}
+\CommentTok{\#\textquotesingle{} @param Y a vector with n entry}
+\CommentTok{\#\textquotesingle{} @param X a n * p matrix}
+\CommentTok{\#\textquotesingle{} @return estimated parameters for OLS regression by SVD decomposition}
+\CommentTok{\#\textquotesingle{} @examples Y=rnorm(100,10,1)}
+\CommentTok{\#\textquotesingle{} X=matrix(rnorm(10000,10,1),ncol=100)}
+\CommentTok{\#\textquotesingle{} SVD\_OLS(Y,X)}
+\NormalTok{SVD\_OLS}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(Y,X)\{}
+\NormalTok{  result}\OtherTok{=}\FunctionTok{svd}\NormalTok{(X)}
+
+\NormalTok{  u}\OtherTok{=}\NormalTok{result}\SpecialCharTok{$}\NormalTok{u}
+\NormalTok{  sigma.inv}\OtherTok{=}\FunctionTok{solve}\NormalTok{(}\FunctionTok{diag}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{d))}
+\NormalTok{  v}\OtherTok{=}\NormalTok{s}\OtherTok{=}\NormalTok{result}\SpecialCharTok{$}\NormalTok{v}
+\NormalTok{  beta}\OtherTok{=}\NormalTok{v}\SpecialCharTok{\%*\%}\NormalTok{sigma.inv}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(u)}\SpecialCharTok{\%*\%}\NormalTok{Y}
+  \FunctionTok{return}\NormalTok{(beta)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(lb }\OtherTok{\textless{}{-}}\NormalTok{ bench}\SpecialCharTok{::}\FunctionTok{mark}\NormalTok{(}
+  \FunctionTok{QR\_OLS}\NormalTok{(Y,X),}
+  \FunctionTok{SVD\_OLS}\NormalTok{(Y,X)}
+\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 6
+##   expression         min   median `itr/sec` mem_alloc `gc/sec`
+##   <bch:expr>    <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+## 1 QR_OLS(Y, X)     180us    201us     4549.     312KB    45.2 
+## 2 SVD_OLS(Y, X)    154us    179us     5066.     147KB     8.53
+\end{verbatim}
+
+We can see that the SVD method is faster than the QR method.
+
+\end{document}

@@ -1,4 +1,4 @@
-* using log directory ‘/Users/chaosnow/Desktop/ST230/ST230/matrix.Rcheck’
+* using log directory ‘/Users/chaosnow/Desktop/ST230/matrix.Rcheck’
 * using R version 4.0.2 (2020-06-22)
 * using platform: x86_64-apple-darwin17.0 (64-bit)
 * using session charset: UTF-8
@@ -18,6 +18,6 @@
 * checking serialization versions ... OK
 * checking whether package ‘matrix’ can be installed ... ERROR
 Installation failed.
-See ‘/Users/chaosnow/Desktop/ST230/ST230/matrix.Rcheck/00install.out’ for details.
+See ‘/Users/chaosnow/Desktop/ST230/matrix.Rcheck/00install.out’ for details.
 * DONE
 Status: 1 ERROR
